@@ -1,5 +1,7 @@
-package com.example.MyBookShopApp.data;
+package com.example.MyBookShopApp.services;
 
+import com.example.MyBookShopApp.data.Author;
+import com.example.MyBookShopApp.data.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -19,7 +21,8 @@ public class BookService {
     }
 
     public List<Book> getBookData() {
-        List<Book> books = jdbcTemplate.query("SELECT b.id, a.name, b.title, b.priceOld, b.price FROM books b inner join authors a ON a.author_id = b.author", (ResultSet rs, int rowNum) -> {
+        List<Book> books = jdbcTemplate.query("SELECT b.id, a.name, b.title, b.priceOld, b.price " +
+                "FROM books b inner join authors a ON a.author_id = b.author", (ResultSet rs, int rowNum) -> {
             Book book = new Book();
             book.setId(rs.getInt("id"));
             book.setAuthor(rs.getString("name"));
@@ -29,5 +32,14 @@ public class BookService {
             return book;
         });
         return new ArrayList<>(books);
+    }
+
+    public List<Author> getAuthorData() {
+        List<Author> authors = jdbcTemplate.query("SELECT * FROM authors ORDER BY name", (ResultSet rs, int rowNum) -> {
+            Author author = new Author();
+            author.setName(rs.getString("name"));
+            return author;
+        });
+        return new ArrayList<>(authors);
     }
 }
