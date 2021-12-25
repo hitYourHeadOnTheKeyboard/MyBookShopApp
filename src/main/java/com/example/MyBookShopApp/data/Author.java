@@ -14,14 +14,8 @@ public class Author {
     private String firstName;
     private String lastName;
 
-    @OneToMany
-    @JoinColumn(name = "author_id", referencedColumnName = "id")
+    @OneToMany(mappedBy = "author")
     private List<Book> bookList = new ArrayList<>();
-
-    @Override
-    public String toString() {
-        return firstName + ' ' + lastName;
-    }
 
     public List<Book> getBookList() {
         return bookList;
@@ -53,5 +47,10 @@ public class Author {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Override
+    public String toString() {
+        return firstName + ' ' + lastName;
     }
 }
