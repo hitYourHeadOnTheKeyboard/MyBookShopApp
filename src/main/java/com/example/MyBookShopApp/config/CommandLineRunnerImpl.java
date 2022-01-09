@@ -34,14 +34,14 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
             throw new NullPointerException();
         }
 
-        TestEntity updatedTestEntity = updateTestEntityById(5L);
+        TestEntity updatedTestEntity = updateTestEntityById(6L);
         if (updatedTestEntity != null) {
             Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info("update" + updatedTestEntity);
         }else {
             throw new NullPointerException();
         }
 
-        deleteTestEntityById(4L);
+//        deleteTestEntityById(5L);
 
         Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info(bookRepository.findBooksByAuthor_FirstName("Fan").toString());
         Logger.getLogger(CommandLineRunnerImpl.class.getSimpleName()).info(bookRepository.customFindAllBooks().toString());
