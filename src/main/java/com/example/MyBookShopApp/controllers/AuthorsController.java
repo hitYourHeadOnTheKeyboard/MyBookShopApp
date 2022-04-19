@@ -1,6 +1,7 @@
 package com.example.MyBookShopApp.controllers;
 
 import com.example.MyBookShopApp.data.Author;
+import com.example.MyBookShopApp.data.SearchWordDto;
 import com.example.MyBookShopApp.services.AuthorService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,6 +28,11 @@ public class AuthorsController {
     @ModelAttribute("authorMap")
     public Map<String, List<Author>> authorsMap() {
         return authorService.getAuthorsMap();
+    }
+
+    @ModelAttribute("searchWordDto")
+    public SearchWordDto searchWordDto() {
+        return new SearchWordDto();
     }
 
     @GetMapping("/authors")
